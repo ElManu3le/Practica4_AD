@@ -1,0 +1,30 @@
+Dado el documento del Código 3 el cual contiene información de datos de productos
+y cuya estructura se puede ver en el Código 1. Realizar las siguientes consultas XQuery
+en la base de datos eXist:
+1. Obtén por cada zona el número de productos que tiene.
+2. Obtén la denominación de los productos entra las etiquetas <zona10></zona10>
+si son del código de zona 10, <zona20></zona20> si son del código de zona 20,
+<zona30></zona30> si son del código de zona 30 y <zona40></zona40> si son del
+código de zona 40.
+3. Obtén por cada zona la denominación del o de los productos más caros.
+
+4. Obtén la denominación de los productos contenida entra las etiquetas <placa></pla-
+ca> para los productos en cuya denominación aparece la palabra Placa Base, <me-
+moria></memoria>, para los que contienen la palabra Memoria <micro></micro>,
+
+para los que contienen la palabra Micro y <otros></otros> para el resto de pro-
+ductos.
+
+Utilizando el documento del Código 4 el cual contiene información de datos de su-
+cursales bancarias y cuya estructura se puede ver en el Código 2. Realizar las siguientes
+
+consultas XQuery en la base de datos eXist:
+1. Devuelve el código de sucursal y el número de cuentas que tiene de tipo AHORRO
+y de tipo pensiones.
+2. Devuelve por cada sucursal el código de sucursal, el director, la población, la suma
+del total saldodebe y la suma del total saldohaber de sus cuentas.
+3. Devuelve el nombre de los directores, el código de sucursal y la población de las
+sucursales con más de 3 cuentas.
+4. Devuelve por cada sucursal, el código de sucursal y los datos de las cuentas con
+más saldodebe.
+5. Devuelve la cuenta del tipo PENSIONES que ha hecho más aportación.
