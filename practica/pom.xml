@@ -23,6 +23,18 @@
       <artifactId>xmldb-api</artifactId>
       <version>1.7.0</version>
     </dependency>
+    
+    <dependency>
+      <groupId>org.exist-db</groupId>
+      <artifactId>exist-core</artifactId>
+      <version>5.2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.18</version>
+    </dependency>
 
     <dependency>
       <groupId>org.exist-db</groupId>

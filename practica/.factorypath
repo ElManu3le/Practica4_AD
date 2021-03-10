@@ -84,6 +84,6 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/eclipse/jetty/jetty-servlet/9.4.26.v20200117/jetty-servlet-9.4.26.v20200117.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/eclipse/jetty/jetty-webapp/9.4.26.v20200117/jetty-webapp-9.4.26.v20200117.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/eclipse/jetty/jetty-xml/9.4.26.v20200117/jetty-xml-9.4.26.v20200117.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/org/wso2/orbit/org/apache/commons/commons-lang3/3.11.0.wso2v1/commons-lang3-3.11.0.wso2v1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/wso2/orbit/org/apache/commons/commons-lang3/3.11.0.wso2v1/commons-lang3-3.11.0.wso2v1.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>
