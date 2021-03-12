@@ -10,9 +10,15 @@ import org.xmldb.api.modules.XMLResource;
 
 public class OpsXPath {
 
+  /* Conexion para mi ordenador de casa
+  
     private static String URI = "xmldb:exist://localhost:8080/exist/xmlrpc/db/Recursetes";
     private static String USER = "admin";
-    private static String PASSWORD = "admin";
+    private static String PASSWORD = "admin";*/
+
+    private static String URI = "xmldb:exist://localhost:6969/exist/xmlrpc/db/pruebete";
+    private static String USER = "admin";
+    private static String PASSWORD = "";
   
     public static void main(String[] args) {
       final String driver = "org.exist.xmldb.DatabaseImpl";
