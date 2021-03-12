@@ -38,6 +38,7 @@ public class OpsXPath {
         col = DatabaseManager.getCollection(URI, USER, PASSWORD);
         col.setProperty(OutputKeys.INDENT, "no");
         res = (XMLResource) col.getResource("productos.xml");
+        
   
         if (res == null) {
           System.out.println("document not found!");
