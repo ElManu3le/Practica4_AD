@@ -113,18 +113,12 @@ public class OpsXPath {
 
       case 4:
 
-        pit = xp.query("count(/productos/produc[denominacion[contains(., 'Memoria')] and cod_zona[text() = 10]])").getIterator();
+      pit = xp.query("count(/productos/produc[denominacion[contains(., 'Memoria')] and cod_zona[text() = 10]])").getIterator();
 
-        while (pit.hasMoreResources()) {
-
-          XMLResource denominacion = ((XMLResource) pit.nextResource());
-          System.out.println(denominacion.getContent());
-
-          if (pit.hasMoreResources()) {
-            XMLResource precio = ((XMLResource) pit.nextResource());
-            System.err.println(precio.getContent()+ "\n");
-          }
-        }
+      while (pit.hasMoreResources()) {
+          XMLResource nodo = ((XMLResource) pit.nextResource());
+          System.out.println("Hay " + nodo.getContent() + " productos denominados 'Memoria' " + "\n");
+      }
 
         break;
 
@@ -154,12 +148,6 @@ public class OpsXPath {
 
       
       }
-
-      /*if (res == null) {
-        System.out.println("document not found!");
-      } else {
-        System.out.println(res.getContent());
-      }*/
 
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
