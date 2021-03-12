@@ -51,6 +51,8 @@ public class OpsXPath {
       xp = Objects.requireNonNull((XPathQueryService) col.getService(XPathQueryService.SERVICE_NAME, null));
       xq = Objects.requireNonNull((XQueryService) col.getService(XQueryService.SERVICE_NAME, null));
 
+      ResourceIterator pit = null;
+
       int opcion = 0;
       do {
 
@@ -67,10 +69,51 @@ public class OpsXPath {
       } while (opcion != 0);
 
       switch (opcion = Leer.pedirEnteroValidar()) {
+
       case 1:
         // res = (XMLResource) col.getResource("productos.xml");
 
-        ResourceIterator pit = xp.query("/productos/produc/*[self::denominacion or self::precio]").getIterator();
+        pit = xp.query("/productos/produc/*[self::denominacion or self::precio]").getIterator();
+
+        while (pit.hasMoreResources()) {
+
+          XMLResource denominacion = ((XMLResource) pit.nextResource());
+          System.out.println(denominacion.getContent());
+
+          if (pit.hasMoreResources()) {
+            XMLResource precio = ((XMLResource) pit.nextResource());
+            System.err.println(precio.getContent() + "\n");
+          }
+        }
+
+        break;
+      case 2:
+
+      pit = xp.query("/productos/produc[denominacion[contains(., 'Placa Base')]]").getIterator();
+
+      while (pit.hasMoreResources()) {
+          System.out.println();
+          XMLResource nodo = ((XMLResource) pit.nextResource());
+          System.out.println(nodo.getContent() + "\n");
+      }
+
+        break;
+
+      case 3:
+
+      pit = xp.query("/productos/produc[precio[text() > 60] and cod_zona[text() = 20]]").getIterator();
+
+      while (pit.hasMoreResources()) {
+          System.out.println();
+          XMLResource nodo = ((XMLResource) pit.nextResource());
+          System.out.println(nodo.getContent());
+      }
+
+        break;
+
+      case 4:
+
+        pit = xp.query("count(/productos/produc[denominacion[contains(., 'Memoria')] and cod_zona[text() = 10]])").getIterator();
 
         while (pit.hasMoreResources()) {
 
@@ -86,17 +129,6 @@ public class OpsXPath {
         }
 
         break;
-      case 2:
-
-        break;
-
-      case 3:
-
-        break;
-
-      case 4:
-
-        break;
 
       case 5:
 
@@ -105,7 +137,7 @@ public class OpsXPath {
       case 6:
 
         break;
-        
+
       case 7:
 
         break;
@@ -141,6 +173,10 @@ public class OpsXPath {
     } catch (XMLDBException e) {
       e.printStackTrace();
     }
+  }
+
+  public static void uno() {
+
   }
 
 }
