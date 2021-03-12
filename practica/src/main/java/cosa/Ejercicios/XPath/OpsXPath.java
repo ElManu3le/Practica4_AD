@@ -92,7 +92,7 @@ public class OpsXPath {
       pit = xp.query("/productos/produc[denominacion[contains(., 'Placa Base')]]").getIterator();
 
       while (pit.hasMoreResources()) {
-          System.out.println();
+          
           XMLResource nodo = ((XMLResource) pit.nextResource());
           System.out.println(nodo.getContent() + "\n");
       }
@@ -104,9 +104,9 @@ public class OpsXPath {
       pit = xp.query("/productos/produc[precio[text() > 60] and cod_zona[text() = 20]]").getIterator();
 
       while (pit.hasMoreResources()) {
-          System.out.println();
+          
           XMLResource nodo = ((XMLResource) pit.nextResource());
-          System.out.println(nodo.getContent());
+          System.out.println(nodo.getContent()+ "\n");
       }
 
         break;
@@ -117,14 +117,12 @@ public class OpsXPath {
 
         while (pit.hasMoreResources()) {
 
-          System.out.println();
-
           XMLResource denominacion = ((XMLResource) pit.nextResource());
           System.out.println(denominacion.getContent());
 
           if (pit.hasMoreResources()) {
             XMLResource precio = ((XMLResource) pit.nextResource());
-            System.err.println(precio.getContent());
+            System.err.println(precio.getContent()+ "\n");
           }
         }
 
@@ -154,15 +152,14 @@ public class OpsXPath {
 
         break;
 
-      default:
-        break;
+      
       }
 
-      if (res == null) {
+      /*if (res == null) {
         System.out.println("document not found!");
       } else {
         System.out.println(res.getContent());
-      }
+      }*/
 
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
@@ -173,10 +170,6 @@ public class OpsXPath {
     } catch (XMLDBException e) {
       e.printStackTrace();
     }
-  }
-
-  public static void uno() {
-
   }
 
 }
