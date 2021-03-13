@@ -29,7 +29,7 @@ public class OpsXQuery {
      * "xmldb:exist://localhost:6969/exist/xmlrpc/db/pruebete"; private static
      * String USER = "admin"; private static String PASSWORD = "";
      */
-    private static XPathQueryService xp;
+    
     private static XQueryService xq;
 
     public static void main(String[] args) {
@@ -49,7 +49,7 @@ public class OpsXQuery {
             // get the collection
             col = DatabaseManager.getCollection(URI, USER, PASSWORD);
             col.setProperty(OutputKeys.INDENT, "no");
-            xp = Objects.requireNonNull((XPathQueryService) col.getService(XPathQueryService.SERVICE_NAME, null));
+            xq = Objects.requireNonNull((XQueryService) col.getService(XQueryService.SERVICE_NAME, null));
 
             ResourceIterator pit = null;
 
