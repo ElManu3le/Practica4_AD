@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javax.xml.transform.OutputKeys;
 
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.Database;
@@ -11,25 +13,22 @@ import org.xmldb.api.base.ResourceIterator;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 import org.xmldb.api.modules.XPathQueryService;
-import org.xmldb.api.modules.XQueryService;
 
 import cosa.Ejercicios.Leer;
 
 public class OpsXPath {
 
-  /*
-   * Conexion para mi ordenador de casa
-   * 
-   * private static String URI =
-   * "xmldb:exist://localhost:8080/exist/xmlrpc/db/Recursetes"; private static
-   * String USER = "admin"; private static String PASSWORD = "admin";
-   */
+  // Conexion para mi ordenador de casa
 
-  private static String URI = "xmldb:exist://localhost:6969/exist/xmlrpc/db/pruebete";
+  private static String URI = "xmldb:exist://localhost:8080/exist/xmlrpc/db/Recursetes";
   private static String USER = "admin";
-  private static String PASSWORD = "";
+  private static String PASSWORD = "admin";
+  /*
+   * private static String URI =
+   * "xmldb:exist://localhost:6969/exist/xmlrpc/db/pruebete"; private static
+   * String USER = "admin"; private static String PASSWORD = "";
+   */
   private static XPathQueryService xp;
-  private static XQueryService xq;
 
   public static void main(String[] args) {
     final String driver = "org.exist.xmldb.DatabaseImpl";
@@ -49,7 +48,6 @@ public class OpsXPath {
       col = DatabaseManager.getCollection(URI, USER, PASSWORD);
       col.setProperty(OutputKeys.INDENT, "no");
       xp = Objects.requireNonNull((XPathQueryService) col.getService(XPathQueryService.SERVICE_NAME, null));
-      xq = Objects.requireNonNull((XQueryService) col.getService(XQueryService.SERVICE_NAME, null));
 
       ResourceIterator pit = null;
 
@@ -89,64 +87,120 @@ public class OpsXPath {
         break;
       case 2:
 
-      pit = xp.query("/productos/produc[denominacion[contains(., 'Placa Base')]]").getIterator();
+        pit = xp.query("/productos/produc[denominacion[contains(., 'Placa Base')]]").getIterator();
 
-      while (pit.hasMoreResources()) {
-          
+        while (pit.hasMoreResources()) {
+
           XMLResource nodo = ((XMLResource) pit.nextResource());
           System.out.println(nodo.getContent() + "\n");
-      }
+        }
 
         break;
 
       case 3:
 
-      pit = xp.query("/productos/produc[precio[text() > 60] and cod_zona[text() = 20]]").getIterator();
+        pit = xp.query("/productos/produc[precio[text() > 60] and cod_zona[text() = 20]]").getIterator();
 
-      while (pit.hasMoreResources()) {
-          
+        while (pit.hasMoreResources()) {
+
           XMLResource nodo = ((XMLResource) pit.nextResource());
-          System.out.println(nodo.getContent()+ "\n");
-      }
+          System.out.println(nodo.getContent() + "\n");
+        }
 
         break;
 
       case 4:
 
-      pit = xp.query("count(/productos/produc[denominacion[contains(., 'Memoria')] and cod_zona[text() = 10]])").getIterator();
+        pit = xp.query("count(/productos/produc[denominacion[contains(., 'Memoria')] and cod_zona[text() = 10]])")
+            .getIterator();
 
-      while (pit.hasMoreResources()) {
+        while (pit.hasMoreResources()) {
           XMLResource nodo = ((XMLResource) pit.nextResource());
           System.out.println("Hay " + nodo.getContent() + " productos denominados 'Memoria' " + "\n");
-      }
+        }
 
         break;
 
       case 5:
+        pit = xp.query(
+            "sum(/productos/produc[denominacion[contains(., 'Micro')]]/precio/text()) div count(/productos/produc[denominacion[contains(., 'Micro')]])")
+            .getIterator();
+
+        while (pit.hasMoreResources()) {
+          System.out.println();
+          XMLResource nodo = ((XMLResource) pit.nextResource());
+          System.out.println("La media de los precios en los microprocesadores es " + nodo.getContent() + "\n");
+        }
 
         break;
 
       case 6:
+        pit = xp.query("/productos/produc[number(stock_minimo) > number(stock_actual)]").getIterator();
+
+        while (pit.hasMoreResources()) {
+          System.out.println();
+          XMLResource nodo = ((XMLResource) pit.nextResource());
+
+          NodeList nodosProduc = nodo.getContentAsDOM().getChildNodes();
+
+          for (int i = 0; i < nodosProduc.getLength(); ++i) {
+            Node n = nodosProduc.item(i);
+            if (n.getLocalName() != null) {
+              System.out.println(n.getLocalName() + " = " + n.getTextContent() + "\n");
+            }
+          }
+        }
 
         break;
 
       case 7:
+        pit = xp.query(
+            "/productos/produc/*[(self::denominacion or self::precio) and number(../stock_minimo/text()) > number(../stock_actual/text()) and ../cod_zona/text() = 40]/text()")
+            .getIterator();
+
+        while (pit.hasMoreResources()) {
+          System.out.println();
+          XMLResource nodo = ((XMLResource) pit.nextResource());
+          System.out.println("nombre = " + nodo.getContent());
+
+          if (pit.hasMoreResources()) {
+            XMLResource n2 = ((XMLResource) pit.nextResource());
+            System.out.println("precio = " + n2.getContent() + "\n");
+          }
+        }
 
         break;
 
       case 8:
+        pit = xp.query("/productos/produc[precio = max(/productos/produc/precio)]").getIterator();
+        while (pit.hasMoreResources()) {
+          System.out.println();
+          XMLResource nodo = ((XMLResource) pit.nextResource());
+          System.out.println(nodo.getContent() + "\n");
+        }
 
         break;
 
       case 9:
+        pit = xp.query("/productos/produc[precio = min(/productos/produc[cod_zona = 20]/precio)]").getIterator();
+        while (pit.hasMoreResources()) {
+          System.out.println();
+          XMLResource nodo = ((XMLResource) pit.nextResource());
+          System.out.println(nodo.getContent() + "\n");
+        }
 
         break;
 
       case 10:
+        pit = xp.query("/productos/produc[precio = max(/productos/produc[cod_zona = 10]/precio)]").getIterator();
+        while (pit.hasMoreResources()) {
+          System.out.println();
+          XMLResource nodo = ((XMLResource) pit.nextResource());
+          System.out.println(nodo.getContent() + "\n");
+        }
 
         break;
 
-      
       }
 
     } catch (ClassNotFoundException e) {
