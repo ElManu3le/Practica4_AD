@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <sucursales>
   <sucursal telefono="112233" codigo="SUC1">
-      <director>Alicia Gómez</director>
+      <director>Alicia Gï¿½mez</director>
 	    <poblacion>Madrid</poblacion>
 	    <cuenta tipo="AHORRO">
-			  <nombre>Antonio García</nombre>
+			  <nombre>Antonio Garcï¿½a</nombre>
 				<numero>123456</numero>
 				<saldohaber>21000</saldohaber>
 				<saldodebe>200</saldodebe>
 			</cuenta>
 			<cuenta tipo="AHORRO">
-			  <nombre>Pedro Gómez</nombre>
+			  <nombre>Pedro Gï¿½mez</nombre>
 				<numero>1111456</numero>
 				<saldohaber>12000</saldohaber>
 				<saldodebe>0</saldodebe>
 			</cuenta>
 			<cuenta tipo="AHORRO">
-		    <nombre>Alicia Martín</nombre>
+		    <nombre>Alicia Martï¿½n</nombre>
 				<numero>223344</numero>
 				<saldohaber>13000</saldohaber>
 				<saldodebe>0</saldodebe>
 			</cuenta>
 			<cuenta tipo="AHORRO">
-		    <nombre>María Montes</nombre>
+		    <nombre>Marï¿½a Montes</nombre>
 				<numero>667788</numero>
 				<saldohaber>3000</saldohaber>
 				<saldodebe>100</saldodebe>
 			</cuenta>
 			<cuenta tipo="PENSIONES">
-			   <nombre>María Montes</nombre>
+			   <nombre>Marï¿½a Montes</nombre>
 				 <numero>99667788</numero>
 				 <aportacion>23000</aportacion>
 			</cuenta>
@@ -48,14 +48,14 @@
 				<saldodebe>12000</saldodebe>
 			</cuenta>
 			<cuenta tipo="AHORRO">
-			  <nombre>María Jesús Ramos</nombre>
+			  <nombre>Marï¿½a Jesï¿½s Ramos</nombre>
 				<numero>4444222</numero>
 				<saldohaber>5000</saldohaber>
 				<saldodebe>0</saldodebe>
 			</cuenta>
 		</sucursal>	
 		<sucursal telefono="5566775" codigo="SUC3">
-      <director>Pedro Martín</director>
+      <director>Pedro Martï¿½n</director>
 	    <poblacion>Talavera</poblacion>	
 			<cuenta tipo="AHORRO">
 		    <nombre>Alicia Perea</nombre>
@@ -81,4 +81,3 @@
 			</cuenta>					
 	</sucursal>
 </sucursales >
-

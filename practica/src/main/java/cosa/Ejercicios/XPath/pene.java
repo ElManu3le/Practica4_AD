@@ -32,7 +32,7 @@ public class pene
     public static void main( String[] args ) throws Exception
     {
         db = (Database) Class.forName("org.exist.xmldb.DatabaseImpl").newInstance();
-        Collection col = Objects.requireNonNull(db.getCollection("exist://localhost:6969/exist/xmlrpc/db/pruebete", "admin", ""));
+        Collection col = Objects.requireNonNull(db.getCollection("xmldb:exist://localhost:8080/exist/xmlrpc/db/Recursetes", "admin", "admin"));
         xpath = Objects.requireNonNull((XPathQueryService) col.getService(XPathQueryService.SERVICE_NAME, null));
         xquery = Objects.requireNonNull((XQueryService) col.getService(XQueryService.SERVICE_NAME, null));
 
@@ -47,20 +47,8 @@ public class pene
     // Imprime el menú
     private static void imprMenu() {
         System.out.println(
-                  "\nÓrdenes válidas:\n================\n"
-                + "0 -> Salir.\n"
-                + "\n XPath\n -----\n"
-                + "1 -> Obtener los nodos denominación y precio de todos los productos.\n"
-                + "2 -> Obtener los nodos de los productos que sean placas base.\n"
-                + "3 -> Obtener los nodos de los productos con precio mayor de 60€ y de la zona 20.\n"
-                + "4 -> Obtener el número de productos que sean memorias y de la zona 10.\n"
-                + "5 -> Obtener la media de precio de los micros.\n"
-                + "6 -> Obtener los datos de los productos cuyo stock mínimo sea mayor que su stock actual.\n"
-                + "7 -> Obtener el nombre y el precio de aquellos productos cuyo stock mínimo sea mayor que su stock actual y que sean de la zona 40.\n"
-                + "8 -> Obtener el producto más caro.\n"
-                + "9 -> Obtener el producto más barato de la zona 20.\n"
-                + "10 -> Obtener el producto más caro de la zona 10.\n"
-                + "\n XQuery\n ------\n"
+                 
+                "\n XQuery\n ------\n"
                 + "11 -> Obtener por cada zona el número de productos que tiene.\n"
                 + "12 -> Obtener la denominación de los productos entre las etiquetas <zona_>, donde _ es el número de zona.\n"
                 + "13 -> Obtener por cada zona la denominación del o de los productos más caros.\n"
@@ -77,18 +65,6 @@ public class pene
     private static void acatar(int orden) throws XMLDBException {
         switch (orden) {
             case 0: default: return;
-
-            // XPath
-            case 1: xpath_1(); break;
-            case 2: xpath_2(); break;
-            case 3: xpath_3(); break;
-            case 4: xpath_4(); break;
-            case 5: xpath_5(); break;
-            case 6: xpath_6(); break;
-            case 7: xpath_7(); break;
-            case 8: xpath_8(); break;
-            case 9: xpath_9(); break;
-            case 10: xpath_10(); break;
 
             // XQuery (productos)
             case 11: xquery_prods_1(); break;
@@ -316,165 +292,6 @@ public class pene
         }
     }
 
-    /**
-     * Obtener el producto más caro de la zona 10.
-     * 
-     * @throws XMLDBException
-     */
-    private static void xpath_10() throws XMLDBException {
-        ResourceIterator ri = xpath.query("/productos/produc[precio = max(/productos/produc[cod_zona = 10]/precio)]").getIterator();
-        while (ri.hasMoreResources()) {
-            System.out.println();
-            XMLResource nodo = ((XMLResource) ri.nextResource());
-            System.out.println(nodo.getContent());
-        }
-    }
-
-    /**
-     * Obtener el producto más barato de la zona 20.
-     * @throws XMLDBException
-     */
-    private static void xpath_9() throws XMLDBException {
-        ResourceIterator ri = xpath.query("/productos/produc[precio = min(/productos/produc[cod_zona = 20]/precio)]").getIterator();
-        while (ri.hasMoreResources()) {
-            System.out.println();
-            XMLResource nodo = ((XMLResource) ri.nextResource());
-            System.out.println(nodo.getContent());
-        }
-    }
-
-    /**
-     * Obtener el producto más caro.
-     * @throws XMLDBException
-     */
-    private static void xpath_8() throws XMLDBException {
-
-        ResourceIterator ri = xpath.query("/productos/produc[precio = max(/productos/produc/precio)]").getIterator();
-        while (ri.hasMoreResources()) {
-            System.out.println();
-            XMLResource nodo = ((XMLResource) ri.nextResource());
-            System.out.println(nodo.getContent());
-        }
-    }
-
-    /**
-     * Obtener el nombre del producto y el precio de aquellos cuyo stock mínimo sea mayor 
-     * que su stock actual y sean de la zona 40.
-     * @throws XMLDBException
-     */
-    private static void xpath_7() throws XMLDBException {
-
-        ResourceIterator ri = xpath.query("/productos/produc/*[(self::denominacion or self::precio) and number(../stock_minimo/text()) > number(../stock_actual/text()) and ../cod_zona/text() = 40]/text()").getIterator();
-
-        while (ri.hasMoreResources()) {
-            System.out.println();
-            XMLResource nodo = ((XMLResource) ri.nextResource());
-            System.out.println("nombre = " + nodo.getContent());
-
-            if (ri.hasMoreResources()) {
-                XMLResource n2 = ((XMLResource) ri.nextResource());
-                System.out.println("precio = " + n2.getContent());
-            }
-        }
-    }
-
-    /**
-     * Obtener los datos de los productos cuyo stock mínimo sea mayor que su stock actual.
-     * @throws XMLDBException
-     */
-    private static void xpath_6() throws XMLDBException {
-        ResourceIterator ri = xpath.query("/productos/produc[number(stock_minimo) > number(stock_actual)]").getIterator();
-        
-        while (ri.hasMoreResources()) {
-            System.out.println();
-            XMLResource nodo = ((XMLResource) ri.nextResource());
-
-            NodeList nodosProduc = nodo.getContentAsDOM().getChildNodes();
-
-            for (int i = 0; i < nodosProduc.getLength(); ++i) {
-                Node n = nodosProduc.item(i);
-                if (n.getLocalName() != null) {
-                    System.out.println(n.getLocalName() + " = " + n.getTextContent());
-                }
-            }
-        }
-    }
-
-    /**
-     * Obtener la media de precio de los micros.
-     * @throws XMLDBException
-     */
-    private static void xpath_5() throws XMLDBException {
-        ResourceIterator ri = xpath.query("sum(/productos/produc[denominacion[contains(., 'Micro')]]/precio/text()) div count(/productos/produc[denominacion[contains(., 'Micro')]])").getIterator();
     
-        while (ri.hasMoreResources()) {
-            System.out.println();
-            XMLResource nodo = ((XMLResource) ri.nextResource());
-            System.out.println("La media de los precios de los microprocesadores es " + nodo.getContent());
-        }
-    }
-
-    /**
-     * Obtener el número de productos que sean memorias y de la zona 10.
-     * @throws XMLDBException
-     */
-    private static void xpath_4() throws XMLDBException {
-        ResourceIterator ri = xpath.query("count(/productos/produc[denominacion[contains(., 'Memoria')] and cod_zona[text() = 10]])").getIterator();
-
-        while (ri.hasMoreResources()) {
-            System.out.println();
-            XMLResource nodo = ((XMLResource) ri.nextResource());
-            System.out.println("Hay " + nodo.getContent() + " productos «Memoria» de la zona 10.");
-        }
-    }
-
-    /**
-     * Obtener los nodos de los productos con precio mayor de 60€ y de la zona 20.
-     * @throws XMLDBException
-     */
-    private static void xpath_3() throws XMLDBException {
-        ResourceIterator ri = xpath.query("/productos/produc[precio[text() > 60] and cod_zona[text() = 20]]").getIterator();
-
-        while (ri.hasMoreResources()) {
-            System.out.println();
-            XMLResource nodo = ((XMLResource) ri.nextResource());
-            System.out.println(nodo.getContent());
-        }
-    }
-
-    /**
-     * Obtener los nodos de los productos que sean placas base.
-     * @throws XMLDBException
-     */
-    private static void xpath_2() throws XMLDBException {
-        ResourceIterator ri = xpath.query("/productos/produc[denominacion[contains(., 'Placa Base')]]").getIterator();
-
-        while (ri.hasMoreResources()) {
-            System.out.println();
-            XMLResource nodo = ((XMLResource) ri.nextResource());
-            System.out.println(nodo.getContent());
-        }
-    }
-
-    /**
-     * Obtener los nodos denominación y precio de todos los productos.
-     * @throws XMLDBException
-     */
-    private static void xpath_1() throws XMLDBException {
-        ResourceIterator ri = xpath.query("/productos/produc/*[self::denominacion or self::precio]").getIterator();
-
-        while (ri.hasMoreResources()) {
-
-            System.out.println();
-
-            XMLResource denominacion = ((XMLResource) ri.nextResource());
-            System.out.println(denominacion.getContent());
-
-            if (ri.hasMoreResources()) {
-                XMLResource precio = ((XMLResource) ri.nextResource());
-                System.err.println(precio.getContent());
-            }
-        }
-    }
 
 }

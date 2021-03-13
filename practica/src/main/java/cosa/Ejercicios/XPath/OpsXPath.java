@@ -54,15 +54,15 @@ public class OpsXPath {
       int opcion = 0;
       do {
 
-        System.out.println("1 -> Obtén los nodos denominación y precio de todos los productos.\n"
-            + "2 -> Obtén los nodos de los productos que sean placas base.\n"
-            + "3 -> Obtén los nodos de los productos con precio mayor de 60€ y de la zona 20.\n"
-            + "4 -> Obtén el número de productos que sean memorias y de la zona 10.\n"
-            + "5 -> Obtén la media de precio de los micros.\n"
-            + "6 -> Obtén los datos de los productos cuyo stock mínimo sea mayor que su stock actual.\n"
-            + "7 -> Obtén el nombre del producto y el precio de aquellos cuyo stock mínimo sea mayor que su stock actual y sean de la zona 40.\n"
-            + "8 -> Obtén el producto más caro.\n" + "9 -> Obtén el producto más barato de la zona 20.\n"
-            + "10 -> Obtén el producto más caro de la zona 10.\n");
+        System.out.println("1 - Obtén los nodos denominación y precio de todos los productos.\n"
+            + "2 - Obtén los nodos de los productos que sean placas base.\n"
+            + "3 - Obtén los nodos de los productos con precio mayor de 60€ y de la zona 20.\n"
+            + "4 - Obtén el número de productos que sean memorias y de la zona 10.\n"
+            + "5 - Obtén la media de precio de los micros.\n"
+            + "6 - Obtén los datos de los productos cuyo stock mínimo sea mayor que su stock actual.\n"
+            + "7 - Obtén el nombre del producto y el precio de aquellos cuyo stock mínimo sea mayor que su stock actual y sean de la zona 40.\n"
+            + "8 - Obtén el producto más caro.\n" + "9 -> Obtén el producto más barato de la zona 20.\n"
+            + "10 - Obtén el producto más caro de la zona 10.\n");
 
       } while (opcion != 0);
 
