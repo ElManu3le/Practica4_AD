@@ -18,15 +18,23 @@ import cosa.Ejercicios.Leer;
 
 public class OpsXPath {
 
-  // Conexion para mi ordenador de casa
+  
 
-  private static String URI = "xmldb:exist://localhost:8080/exist/xmlrpc/db/Recursetes";
+  private static String URI = "xmldb:exist://localhost:6969/exist/xmlrpc/db/pruebete";
   private static String USER = "admin";
-  private static String PASSWORD = "admin";
-  /*
-   * private static String URI =
-   * "xmldb:exist://localhost:6969/exist/xmlrpc/db/pruebete"; private static
-   * String USER = "admin"; private static String PASSWORD = "";
+  private static String PASSWORD = "";
+  /* Conexion para Ordenador Clase
+
+   * private static String URI = "xmldb:exist://localhost:6969/exist/xmlrpc/db/pruebete"; 
+   * private static String USER = "admin"; 
+   * private static String PASSWORD = "";
+   */
+
+   /* Conexion para ordenador de casa
+   
+   * private static String URI = "xmldb:exist://localhost:8080/exist/xmlrpc/db/Recursetes"; 
+   * private static String USER = "admin"; 
+   * private static String PASSWORD = "admin";
    */
   private static XPathQueryService xp;
 

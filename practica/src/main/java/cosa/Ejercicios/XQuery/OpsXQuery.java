@@ -4,31 +4,34 @@ import java.util.Objects;
 
 import javax.xml.transform.OutputKeys;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.Database;
 import org.xmldb.api.base.ResourceIterator;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
-import org.xmldb.api.modules.XPathQueryService;
 import org.xmldb.api.modules.XQueryService;
 
 import cosa.Ejercicios.Leer;
 
 public class OpsXQuery {
 
-    // Conexion para mi ordenador de casa
+    private static String URI = "xmldb:exist://localhost:6969/exist/xmlrpc/db/pruebete";
+  private static String USER = "admin";
+  private static String PASSWORD = "";
+  /* Conexion para Ordenador Clase
 
-    private static String URI = "xmldb:exist://localhost:8080/exist/xmlrpc/db/Recursetes";
-    private static String USER = "admin";
-    private static String PASSWORD = "admin";
-    /*
-     * private static String URI =
-     * "xmldb:exist://localhost:6969/exist/xmlrpc/db/pruebete"; private static
-     * String USER = "admin"; private static String PASSWORD = "";
-     */
+   * private static String URI = "xmldb:exist://localhost:6969/exist/xmlrpc/db/pruebete"; 
+   * private static String USER = "admin"; 
+   * private static String PASSWORD = "";
+   */
+
+   /* Conexion para ordenador de casa
+   
+   * private static String URI = "xmldb:exist://localhost:8080/exist/xmlrpc/db/Recursetes"; 
+   * private static String USER = "admin"; 
+   * private static String PASSWORD = "admin";
+   */
     
     private static XQueryService xq;
 
